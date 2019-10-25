@@ -1,37 +1,39 @@
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/lmcphill/fuzzystar/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+ny<-read.table("/Users/lindseymcphillips/Desktop/cs73.dat",header=T); dim(ny)  #  916  11
+ny2<-na.omit(ny); dim(ny2) # 914  11
+attach(ny2)
+lpop <- log(ny2$pop)
+lexpen <- log(ny2$expen)
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## R Markdown
 
-### Jekyll Themes
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/lmcphill/fuzzystar/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-### Support or Contact
+```{r}
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+plot(lpop, lexpen, xlab = "Log-Population", ylab = "Log-Expenditures")
+lines(lowess(lpop, lexpen), col="blue")
+
+```
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
